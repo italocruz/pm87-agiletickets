@@ -7,7 +7,7 @@ import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 
 public class CalculadoraDePrecos {
 	
-	private static final double ACRESCIMO_5_PORCENTO= 0.05;
+	private static final double ACRESCIMO_5_PORCENTO = 0.05;
 	private static final double ACRESCIMO_10_PORCENTO = 0.10;
 	private static final double ACRESCIMO_20_PORCENTO = 0.20;
 	private static final double ACRESCIMO_50_PORCENTO = 0.50;
