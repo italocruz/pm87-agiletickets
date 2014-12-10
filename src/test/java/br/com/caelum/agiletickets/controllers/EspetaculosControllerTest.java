@@ -1,13 +1,18 @@
 package br.com.caelum.agiletickets.controllers;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -17,6 +22,7 @@ import org.mockito.Spy;
 import br.com.caelum.agiletickets.domain.Agenda;
 import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
 import br.com.caelum.agiletickets.models.Espetaculo;
+import br.com.caelum.agiletickets.models.Periodicidade;
 import br.com.caelum.agiletickets.models.Sessao;
 import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 import br.com.caelum.vraptor.Result;
@@ -117,5 +123,30 @@ public class EspetaculosControllerTest {
 
 		assertThat(sessao.getIngressosDisponiveis(), is(2));
 	}
+	
+	@Test
+	public void deveRetonarAsSessoesDiarias() throws Exception {
 
+		List<Sessao> listaSessoes = new ArrayList<Sessao>();
+		
+		LocalDate inicio = new LocalDate("2014-12-10");
+		LocalDate fim = new LocalDate("2014-12-20");
+		
+		Espetaculo espetaculo = new Espetaculo();
+		listaSessoes.addAll(espetaculo.criaSessoes(inicio, fim, LocalTime.now(), Periodicidade.DIARIA));
+		assertEquals(11, listaSessoes.size());		
+	}
+	
+	@Test
+	public void deveRetonarAsSessoesSemanais() throws Exception {
+
+		List<Sessao> listaSessoes = new ArrayList<Sessao>();
+		
+		LocalDate inicio = new LocalDate("2014-12-10");
+		LocalDate fim = new LocalDate("2014-12-20");
+		
+		Espetaculo espetaculo = new Espetaculo();
+		listaSessoes.addAll(espetaculo.criaSessoes(inicio, fim, LocalTime.now(), Periodicidade.SEMANAL));
+		assertEquals(2, listaSessoes.size());		
+	}
 }
