@@ -134,7 +134,7 @@ public class EspetaculosControllerTest {
 		
 		Espetaculo espetaculo = new Espetaculo();
 		listaSessoes.addAll(espetaculo.criaSessoes(inicio, fim, LocalTime.now(), Periodicidade.DIARIA));
-		assertEquals(10, listaSessoes.size());		
+		assertEquals(11, listaSessoes.size());		
 	}
 	
 	@Test
